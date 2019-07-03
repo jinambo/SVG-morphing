@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVG morphing</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    
+    <button id="btn1">Click me!</button>
+
+    <svg viewBox="0 0 215 110">
+        <path class="morph" id="Path_3" data-name="Path 3" d="M-363.073-178V-68h215V-0-41.084L-0-178Z" transform="translate(363.073 178)" fill="#208bf6"/>
+    </svg>      
+
+    <div class="pop-box">
+        <h1>Hello, how u doin'?</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores tempora exercitationem placeat minus mollitia delectus est debitis hic provident laboriosam cupiditate, repudiandae deserunt earum enim, officia blanditiis eveniet tempore ipsa!</p>
+        <button id="btn2">Close me.</button>
+    </div>
+
+<script src="anime.min.js"></script>
+<script src="jquery.min.js"></script>
+<script>
+
+    let btn1 = $('#btn1');
+    let btn2 = $('#btn2');
+
+    $('#btn1').click(function(){
+        var morphing = anime({
+            targets: '.morph',
+            d: [
+                { value: 'M-363.073-178V-68h215l-156.474-41.084L-335.687-178Z' },
+                { value: 'M-363.073-178V-68h215l-195.474-20.084L-363.073-178Z' },
+            ],
+            easing: 'easeOutQuad',
+            duration: 1200,
+            direction: 'alternate',
+            loop: 'false'
+        });
+        $(this).fadeOut(250);
+        $('.pop-box').fadeIn(250);
+    });
+
+    $('#btn2').click(function(){
+        var morphing = anime({
+            targets: '.morph',
+            d: [
+                { value: 'M-363.073-178V-68h215l-156.474-41.084L-335.687-178Z' },
+                { value: 'M-363.073-178V-68h215V-0-41.084L-0-178Z' },
+            ],
+            easing: 'easeOutQuad',
+            duration: 2000,
+            direction: 'alternate',
+            loop: 'false'
+        });
+        $('.pop-box').fadeOut(250);
+        $('#btn1').fadeIn(2000);
+    });
+
+</script>
+
+</body>
+</html>
